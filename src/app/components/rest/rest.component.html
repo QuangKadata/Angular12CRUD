@@ -1,0 +1,35 @@
+<nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
+  <a class="navbar-brand col-sm-3 col-md-2 mr-0">
+    <img src="/assets/images/logo/logo.png" alt="image-logo" style="width: 70px;height: 25px;color: white;">
+  </a>
+  <ul class="navbar-nav px-3">
+    <li class="nav-item text-nowrap">
+      <a class="nav-link" href="#">Sign out</a>
+    </li>
+  </ul>
+</nav>
+<div class="container-fluid">
+  <div class="row">
+    <app-navbar></app-navbar>
+
+    <main role="main" class="col-md-9 ml-lg-auto col-lg-10 px-4">
+      <div class="chartjs-size-monitor"
+        style="position: absolute; inset: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;">
+        <div class="chartjs-size-monitor-expand"
+          style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
+          <div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div>
+        </div>
+        <div class="chartjs-size-monitor-shrink"
+          style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
+          <div style="position:absolute;width:200%;height:200%;left:0; top:0"></div>
+        </div>
+      </div>
+      <div style="margin-top: 50px;">
+        <!-- <ngx-spinner [fullScreen]="false" type="ball-clip-rotate-multiple" size="medium">
+          <p class="loading">Loading Awesomeness...</p>
+        </ngx-spinner> -->
+        <router-outlet></router-outlet>
+      </div>
+    </main>
+  </div>
+</div>

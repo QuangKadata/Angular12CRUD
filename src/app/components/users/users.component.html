@@ -1,0 +1,165 @@
+<div
+  class="containerd-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+  <h1 class="h2"><i class="fa fa-user mr-1" style="color: darkblue;" aria-hidden="true"></i>Users Listing</h1>
+  <small>faswdawdawdwad</small>
+  <div class="btn-toolbar mb-2 mb-md-0">
+    <div class="btn-group mr-2">
+      <button class="btn btn-sm btn-outline-primary"><i class="fa fa-file mr-2" aria-hidden="true"></i>Export</button>
+      <button class="btn btn-sm btn-outline-info" style="float: right;" data-toggle="modal" data-target="#addUserModal"><i class="fa fa-plus mr-2" aria-hidden="true"></i>Add User</button>
+    </div>
+    <!-- Modal Add User -->
+    <div class="modal fade" id="addUserModal" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Added User</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form [formGroup]="formValue">
+              <div class="form-group">
+                <label for="exampleInputEmail1">First Name</label>
+                <input type="text" formControlName="firstName" class="form-control" placeholder="Enter First Name" required>
+                <small class="form-text text-muted">We'll never share your email with anyone else.</small>
+              </div>
+              <div class="form-group">
+                <label for="exampleInputPassword1">Last Name</label>
+                <input type="text" formControlName="lastName" class="form-control" placeholder="Enter Last Name" required>
+                <small class="form-text text-muted">We'll never share your email with anyone else.</small>
+              </div>
+              <div class="form-group">
+                <label for="exampleInputEmail1">Email ID</label>
+                <input type="email" formControlName="email" class="form-control" placeholder="Enter email" required>
+                <small formControlName="text" class="form-text text-muted">We'll never share your email with anyone
+                  else.</small>
+              </div>
+              <div class="form-group">
+                <label for="exampleInputPassword1">Mobile Number</label>
+                <input type="text" formControlName="mobile" class="form-control" placeholder="Enter Telephone Number" required>
+                <small class="form-text text-muted">We'll never share your email with anyone else.</small>
+              </div>
+              <div class="form-group">
+                <label for="exampleInputEmail1">Salary</label>
+                <input type="text" formControlName="salary" class="form-control" placeholder="Enter Salary" required>
+                <small class="form-text text-muted">We'll never share your email with anyone else.</small>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" id="cancel" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary" (click)="postUserDetails()">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal Edit User-->
+    <div class="modal fade" id="EditUserModal" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Edit User</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form [formGroup]="formValue">
+              <div class="form-group">
+                <label for="exampleInputEmail1">First Name</label>
+                <input type="text" formControlName="firstName" class="form-control" placeholder="Enter First Name">
+              </div>
+              <div class="form-group">
+                <label for="exampleInputPassword1">Last Name</label>
+                <input type="text" formControlName="lastName" class="form-control" placeholder="Enter Last Name">
+              </div>
+              <div class="form-group">
+                <label for="exampleInputEmail1">Email ID</label>
+                <input type="email" formControlName="email" class="form-control" placeholder="Enter email" readonly>
+              </div>
+              <div class="form-group">
+                <label for="exampleInputPassword1">Mobile Number</label>
+                <input type="text" formControlName="mobile" class="form-control" placeholder="Enter Telephone Number">
+              </div>
+              <div class="form-group">
+                <label for="exampleInputEmail1">Salary</label>
+                <input type="text" formControlName="salary" class="form-control" placeholder="Enter Salary">
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" id="cancel" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary" (click)="updateUserDetail()">Update</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="table-responsive">
+
+  <input type="text" class="form-control" name="firstName" [(ngModel)]="firstName" (ngModelChange)="Search()" placeholder="Search First Name" style="width: 30%;margin-bottom: 15px;" />
+  <table class="table table-bordered">
+    <thead>
+      <tr style="background-color: #343a40 !important;color: white;">
+        <th (click)="sort('id')">Id &nbsp;<i class="fa fa-sort" style="float: right;margin-top: 5px"
+            aria-hidden="true"></i></th>
+        <th (click)="sort('firstName')">First Name &nbsp;<i class="fa fa-sort" style="float: right;margin-top: 5px"
+            aria-hidden="true"></i></th>
+        <th (click)="sort('lastName')">Last Name &nbsp;<i class="fa fa-sort" style="float: right;margin-top: 5px"
+            aria-hidden="true"></i></th>
+            <th >Full Name &nbsp;<i class="fa fa-sort" style="float: right;margin-top: 5px"
+              aria-hidden="true"></i></th>
+        <th (click)="sort('email')">Email &nbsp;<i class="fa fa-sort" style="float: right;margin-top: 5px"
+            aria-hidden="true"></i></th>
+        <th (click)="sort('mobile')">Mobile &nbsp;<i class="fa fa-sort" style="float: right;margin-top: 5px"
+            aria-hidden="true"></i></th>
+        <th (click)="sort('salary')">Salary &nbsp;<i class="fa fa-sort" style="float: right;margin-top: 5px"
+            aria-hidden="true"></i></th>
+        <th style="width: 3%;text-align: center;">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let a of users | orderBy: key: reserve |paginate :{itemsPerPage: 10,currentPage : p}">
+        <td scope="row">{{a.id}}</td>
+        <td scope="row">{{a.firstName}}</td>
+        <td scope="row">{{a.lastName}}</td>
+        <td scope="row">{{a.firstName + ' ' + a.lastName}}</td>
+        <td scope="row">{{a.email}}</td>
+        <td scope="row">{{a.mobile}}</td>
+        <td scope="row">{{a.salary}}</td>
+        <td class="btn-group">
+          <button type="button" data-toggle="modal" data-target="#EditUserModal"
+            class="btn btn-sm btn-outline-secondary  mr-2" (click)="onEdit(a)"><i class="fa fa-cog"
+              style="font-size: 16px" aria-hidden="true"></i></button>
+          <button type="button" class="btn btn-sm btn-outline-secondary  mr-2" data-toggle="modal"
+            data-target="#deleteUserModal"><i class="fa fa-trash" style="font-size: 16px"
+              aria-hidden="true"></i></button>
+    <!-- Modal Alert Delete -->
+          <div class="modal fade" id="deleteUserModal" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Remove Alert</h5>
+                </div>
+                <div class="modal-body" style="text-align: center;">
+                  <span><i class="fa fa-exclamation-triangle" style="color: coral;font-size: 100px;" aria-hidden="true"></i></span>
+                  <br>
+                  <h6>This item will be peramently delete from table , are you sure ?</h6>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" id="cancel" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                  <button type="button" class="btn btn-danger" (click)="deleteUser(a)">Delete Peramantly</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+
+  </table>
+  <pagination-controls (pageChange)="p = $event"></pagination-controls>
+</div>

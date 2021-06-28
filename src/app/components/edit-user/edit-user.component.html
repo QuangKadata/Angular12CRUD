@@ -1,0 +1,17 @@
+<div class="container">
+ 
+  <form userPost="ngForm" ngSubmit="onSubmit(userPost.value)">
+    <!-- <div class="form-group input-group-lg">
+      <input class="form-control" placeholder="Name" #name formControlName="name">
+    </div> -->
+    <input class="form-control" type="text" name="firstName" ngModel>
+    <input class="form-control" type="text" name="lastName" ngModel>
+    <input class="form-control" type="text" name="email" ngModel>
+    <input class="form-control" type="text" name="mobile" ngModel>
+    <input class="form-control" type="text" name="salary" ngModel>
+
+    <div class="form-group">
+      <button type="submit" class="btn btn-danger btn-block btn-lg">Create</button>
+    </div>
+  </form>
+</div>
